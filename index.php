@@ -23,7 +23,7 @@
     <div class="page-center">
         <div class="page-center-in">
             <div class="container-fluid">
-                <form class="sign-box" id="login" action="view/home/home.php">
+                <form class="sign-box" method="post" id="login" action="">
                     <div class="sign-avatar">
                         <img src="public/img/descarga.jfif" alt="">
                     </div>
@@ -32,17 +32,17 @@
                         
                     </div>
                     <div class="form-group">
-                        <input type="email" id="email" name="email" class="form-control" placeholder="E-Mail or Phone" />
+                        <input type="text" id="user" name="user" class="form-control" placeholder="Usuario" />
                     </div>
                     <div class="form-group">
-                        <input type="password" id="password" name="password" class="form-control" placeholder="Password" />
+                        <input type="password" id="pass" name="pass" class="form-control" placeholder="Password" />
                     </div>
                     <div class="form-group">
                         
                         <!-- <div class="float-right reset">
                             <a href="reset-password.html">Reset Password</a> 
 
-                        </div> --> <button type="submit" class="btn btn-rounded" >Iniciar Sesion</button>
+                        </div> --> <button type="submit" name="entrarboton"class="btn btn-rounded" >Iniciar Sesion</button>
                      <br>
                         <div class="float-letf reset">
                          <a href="http://edtsof.com">productos Edtsof.sas </a><br> Cel: 3008511251 -3012948439 
@@ -50,6 +50,36 @@
                         </div>
                     
                 </form>
+                <?php
+        //include "config.php";//SIRVE PARA UTILIZAR LAS FUNCIONES DEL ARCHIVO CONFIG.PHP
+        
+        if(isset($_POST['entrarboton'])){//PRESIONASTE EL BOTON DEL FORMULARIO
+            $user = $_POST['user'];//LEER EL CONTENIDO DE LA CAJA USER
+            $pass = $_POST['pass'];//LEER EL CONTENIDO DE LA CAJA PASS
+            if ($user != "" && $pass != ""){
+                //PREGUNTAR SI EL USER Y EL PASS SON DIFERENTES HA ESPACIO EN BLANCO
+                $sql_query = "select count(*) as cntUser from user where usuario='".$user."' and password='".$pass."'";
+                //CONSULTA PARA CONTAR LOS REGISTROS Y PASARLO A LA VARIABLE CNTUSER EN LA TABLA LOGIN,
+                //FILTRANDO LOS REGITROS CON EL USUARIO Y PASSWORD INGRESADO POR EL FORMULARIO
+                $result = mysqli_query($con,$sql_query);
+                //EJECUTAR LA CONSULTA EN LA BASE DE DATOS Y RETORNAR LA RESPUESTA
+                $row = mysqli_fetch_array($result);
+                //RECORRE EL RESULTADO OBTENIDO Y PASARLO A UNA VARIABLE
+                $count = $row['cntUser'];//PASAR EL CONTENIDO A UNA VARIABLE SIMPLE
+                if($count == 1){//SOLO UN USUARIO CORRECTO DEBE EXISTIR 
+                    $_SESSION['user'] = $user;//LA SESION  SE INICIA Y TOMA COMO VALOR EL USER INGRESADO
+                    header('Location: view/home/home.php');//ABRIRLA LA PAGINA HOME.PHP
+                }else{
+                    echo '<span class="error">'."Invalido user and password";
+                    //ERROR SI EL USUARIO O PASSWORD SON INCORRECTOS
+                }
+            }else{
+                echo '<span class="error">'."Ingresar user and password";
+                //ERROR SI SE INGRESA ESPACIO EN BLANCO EN USUARIO O PASSWORD
+            }
+        }
+    ?>
+
             </div>
         </div>
     </div>

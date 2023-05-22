@@ -1,20 +1,17 @@
 <?php
-define('SERVIDOR','localhost');
-define('USUARIO','root');
-define('PASSWORD','');
-define('BD','parqueo.com');
 
-$servidor="mysql:dbname=".BD."; host=".SERVIDOR;
-try {
-  $pdo=new PDO($servidor,USUARIO,PASSWORD,array(PDO::MYSQL_ATTR_INIT_COMMAND=>"SET NAMES utf8"));
-// echo"la conexion a la base de datos exitosa";
+session_start();
 
-} catch (PDOException $e) {
-    // echo"Error en la conexion a la base de datos ";
-    echo "<script> alert('Error en la conexion a la base de datos');</script><br>";
-  
+$host = "localhost"; 
+$user = "root";     
+$password = "";     
+$dbname = "Electores"; 
+
+$con = mysqli_connect($host, $user, $password,$dbname);
+
+
+if (!$con) {    
+ die("Connection failed: " . mysqli_connect_error());
+ 
 }
-
-
-$URL="http://localhost/parqueo.com";
 ?>
