@@ -1,6 +1,39 @@
+<?php
+session_start();
 
-<?php include 'app/config.php';?>
-    <!DOCTYPE html>
+$host = "localhost"; 
+$user = "root";     
+$password = "";     
+$dbname = "Electores"; 
+
+$con = mysqli_connect($host, $user, $password, $dbname);
+
+if (!$con) {    
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $usuario = $_POST["user"];
+    $password = $_POST["pass"];
+
+    // Verificar las credenciales en la base de datos
+    $sql = "SELECT * FROM user WHERE usuario = '$usuario' AND password = '$password'";
+    $result = mysqli_query($con, $sql);
+
+    if (mysqli_num_rows($result) == 1) {
+        // Credenciales válidas, iniciar sesión y redirigir al sistema
+        $_SESSION["loggedin"] = true;
+        $_SESSION["username"] = $user;
+        header("Location: view/home/home.php");
+        exit;
+    } else {
+        // Credenciales inválidas, mostrar un mensaje de error
+        $error_message = "Usuario o contraseña incorrectos";
+    }
+}
+?>
+
+<!DOCTYPE html>
 <html>
 
 <head lang="es">
@@ -9,82 +42,68 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Sis_Electores | Edtsof.sas</title>
 
-    
-
     <link rel="stylesheet" href="public/css/separate/pages/login.min.css">
     <link rel="stylesheet" href="public/css/lib/font-awesome/font-awesome.min.css">
     <link rel="stylesheet" href="public/css/lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="public/css/main.css">
     <link rel="shortcut icon" href="public/img/elector.jfif">
+    <link rel="stylesheet" href="public/css/colombia.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <style>
+        .user-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .user-box input {
+            padding-right: 40px;
+        }
+
+        .user-box .material-icons {
+            position: relative;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-100%);
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
-
-    <div class="page-center">
-        <div class="page-center-in">
-            <div class="container-fluid">
-                <form class="sign-box" method="post" id="login" action="">
-                    <div class="sign-avatar">
-                        <img src="public/img/descarga.jfif" alt="">
-                    </div>
-                    <header class="sign-title">Ingreso al Sistema <br>Electores </header>
-                    <div class="form-group" id="error">
-                        
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="user" name="user" class="form-control" placeholder="Usuario" />
-                    </div>
-                    <div class="form-group">
-                        <input type="password" id="pass" name="pass" class="form-control" placeholder="Password" />
-                    </div>
-                    <div class="form-group">
-                        
-                        <!-- <div class="float-right reset">
-                            <a href="reset-password.html">Reset Password</a> 
-
-                        </div> --> <button type="submit" name="entrarboton"class="btn btn-rounded" >Iniciar Sesion</button>
-                     <br>
-                        <div class="float-letf reset">
-                         <a href="http://edtsof.com">productos Edtsof.sas </a><br> Cel: 3008511251 -3012948439 
-                        
-                        </div>
-                    
-                </form>
-                <?php
-        //include "config.php";//SIRVE PARA UTILIZAR LAS FUNCIONES DEL ARCHIVO CONFIG.PHP
-        
-        if(isset($_POST['entrarboton'])){//PRESIONASTE EL BOTON DEL FORMULARIO
-            $user = $_POST['user'];//LEER EL CONTENIDO DE LA CAJA USER
-            $pass = $_POST['pass'];//LEER EL CONTENIDO DE LA CAJA PASS
-            if ($user != "" && $pass != ""){
-                //PREGUNTAR SI EL USER Y EL PASS SON DIFERENTES HA ESPACIO EN BLANCO
-                $sql_query = "select count(*) as cntUser from user where usuario='".$user."' and password='".$pass."'";
-                //CONSULTA PARA CONTAR LOS REGISTROS Y PASARLO A LA VARIABLE CNTUSER EN LA TABLA LOGIN,
-                //FILTRANDO LOS REGITROS CON EL USUARIO Y PASSWORD INGRESADO POR EL FORMULARIO
-                $result = mysqli_query($con,$sql_query);
-                //EJECUTAR LA CONSULTA EN LA BASE DE DATOS Y RETORNAR LA RESPUESTA
-                $row = mysqli_fetch_array($result);
-                //RECORRE EL RESULTADO OBTENIDO Y PASARLO A UNA VARIABLE
-                $count = $row['cntUser'];//PASAR EL CONTENIDO A UNA VARIABLE SIMPLE
-                if($count == 1){//SOLO UN USUARIO CORRECTO DEBE EXISTIR 
-                    $_SESSION['user'] = $user;//LA SESION  SE INICIA Y TOMA COMO VALOR EL USER INGRESADO
-                    header('Location: view/home/home.php');//ABRIRLA LA PAGINA HOME.PHP
-                }else{
-                    echo '<span class="error">'."Invalido user and password";
-                    //ERROR SI EL USUARIO O PASSWORD SON INCORRECTOS
-                }
-            }else{
-                echo '<span class="error">'."Ingresar user and password";
-                //ERROR SI SE INGRESA ESPACIO EN BLANCO EN USUARIO O PASSWORD
-            }
-        }
-    ?>
-
-            </div>
+    <div class="login-box">
+        <div class="avatar">
+            <img src="public/img/Mapa-de-Colombia-vector.webp" alt="">
         </div>
+        <h2>Ingreso al Sistema Electores</h2>
+        <form id="loginForm" method="POST">
+            <div class="user-box">
+                <input type="text" name="user" required>
+                <label>Username</label>
+                <i class="material-icons">account_circle</i>
+            </div>
+            <div class="user-box">
+                <input type="password" name="pass" required>
+                <label>Password</label>
+                <i class="material-icons">https</i>
+            </div>
+            
+            <button type="submit" style="background-color: #2196F3;" onclick="event.preventDefault(); document.getElementById('loginForm').submit();">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Iniciar sesión
+            </button>
+            <?php
+            // Mostrar el mensaje de error si existe
+            if (isset($error_message)) {
+                echo "<p>$error_message</p>";
+            }
+            ?>
+        </form>
     </div>
-    <!--.page-center-->
-
 
     <script src="public/js/lib/jquery/jquery.min.js"></script>
     <script src="public/js/lib/tether/tether.min.js"></script>

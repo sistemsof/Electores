@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Dashboard |Cementerio</title>
+	<title>Dashboard |Electores</title>
 
 	<!-- <link href="img/favicon.144x144.png" rel="apple-touch-icon" type="image/png" sizes="144x144">
 	<link href="img/favicon.114x114.png" rel="apple-touch-icon" type="image/png" sizes="114x114">
@@ -28,10 +28,10 @@
 <header class="site-header">
 	    <div class="container-fluid">
 
-		<a href="#" class="site-logo">
+		<a href="logo-2-white-inverse.png" class="site-logo">
 	            <img class="hidden-md-down" src="../../public/img/logo_cementerio.webp" alt="">
 	            <img class="hidden-lg-up" src="../../public/img/logo_cementerio.webp" alt="">
-				<span><b>CEMENTERIO</b> </span>
+				<span><b>ELECTORES</b> </span>
 	        </a>
 	
 	        <button id="show-hide-sidebar-toggle" class="show-hide-sidebar">
@@ -281,7 +281,7 @@
 	
 	                         
 	                   <a class="btn btn-nav btn-rounded btn-inline btn-danger-outline" href="#">
-	                          SISTEMA ADMINISTRATIVO PARA EL CEMENTERIO
+	                          SISTEMA ADMINISTRATIVO PARA ELECTORES
 	                        </a>   
 	                        <div class="site-header-search-container">
 	                            <form class="site-header-search closed">
@@ -303,7 +303,7 @@
 	<nav class="side-menu">
 	    <ul class="side-menu-list">
 	           <li class="magenta opened">
-	            <a href="scheduler.html">
+	            <a href="#">
 	                <i class="font-icon font-icon-chart-2"></i>
 	                <span class="lbl">Dashboard</span>
 	            </a>
@@ -327,43 +327,35 @@
 	        <li class="brown with-sub">
 	            <span>
 	                <i class="font-icon font-icon-cogwheel"></i>
-	                <span class="lbl">Mantenimiento</span>
+	                <span class="lbl">Barrios</span>
 	            </span>
 	            <ul>
-	                <li><a href="theme-side-ebony-clay.html"><span class="lbl">Crear Cliente</span></a></li>
-	                <li><a href="theme-side-madison-caribbean.html"><span class="lbl">Crear Comunidad</span></a></li>
-	                <li><a href="theme-side-caesium-dark-caribbean.html"><span class="lbl">Craer Tarifas</span></a></li>
-	                <li><a href="theme-side-litmus-blue.html"><span class="lbl">Crear Servicios</span></a></li>
-					<li><a href="theme-side-litmus-blue.html"><span class="lbl">Crear Calle</span></a></li>
-	            </ul>
+	                <li><a href="barrios.php"><span class="lbl">Crear Barrios</span></a></li>
+					
+            </ul>
+	            
 	        </li>
 	        <li class="purple with-sub">
 	            <span>
 	                <i class="font-icon font-icon-users"></i>
-	                <span class="lbl">Clientes</span>
+	                <span class="lbl">Datos personales</span>
 	            </span>
 	            <ul>
 	                <li><a href="messenger.html"><span class="lbl">Crear Cliente</span></a></li>
-	                <li><a href="chat.html"><span class="lbl">Anular Cliente</span><span class="label label-custom label-pill label-danger">8</span></a></li>
 	                <!-- <li><a href="chat-write.html"><span class="lbl">Write Message</span></a></li>
 	                <li><a href="chat-index.html"><span class="lbl">Select User</span></a></li> -->
 	            </ul>
 	        </li>
 	        <li class="red">
-	            <a href="mail.html">
-	                <i class="font-icon font-icon-comments"></i>
-	                <span class="lbl">Generar Contratos</span>
-	            </a>
+	         
 	        </li>
 	        <li class="gold with-sub">
 	            <span>
 	                <i class="font-icon font-icon-edit"></i>
-	                <span class="lbl">Cobro Factura</span>
+	                <span class="lbl">Lideres</span>
 	            </span>
 	            <ul>
-	                <li><a href="ui-form.html"><span class="lbl">Factura Agua</span></a></li>
-	                <li><a href="ui-buttons.html"><span class="lbl">Reconexion</span></a></li>
-	                <li><a href="ui-select.html"><span class="lbl">Corte</span></a></li>
+	                <li><a href="ui-form.html"><span class="lbl">Crear lideres</span></a></li>
 	                <!-- <li><a href="ui-checkboxes.html"><span class="lbl">Checkboxes &amp; Radios</span></a></li> -->
 	                <!-- <li><a href="ui-form-validation.html"><span class="lbl">Validation</span></a></li>
 	                <li><a href="typeahead.html"><span class="lbl">Typeahead</span></a></li>
@@ -376,12 +368,10 @@
 			<li class="gold with-sub">
 	            <span>
 	                <i class="glyphicon glyphicon-list-alt"></i>
-	                <span class="lbl">Usuarios</span>
+	                <span class="lbl">Puestos</span>
 	            </span>
 	            <ul>
-	                <li><a href="ui-form.html"><span class="lbl">Crear Usuario</span></a></li>
-	                <li><a href="ui-buttons.html"><span class="lbl">Permisos</span></a></li>
-	                <li><a href="ui-select.html"><span class="lbl">Tipo Usuario</span></a></li>
+	                <li><a href="ui-form.html"><span class="lbl">Crear puestos </span></a></li>
 	                <!-- <li><a href="ui-checkboxes.html"><span class="lbl">Checkboxes &amp; Radios</span></a></li> -->
 	                <!-- <li><a href="ui-form-validation.html"><span class="lbl">Validation</span></a></li>
 	                <li><a href="typeahead.html"><span class="lbl">Typeahead</span></a></li>
@@ -419,15 +409,10 @@
 			<li class="magenta with-sub">
 	            <span>
 	                <span class="glyphicon glyphicon-list-alt"></span>
-	                <span class="lbl">Reportes</span>
+	                <span class="lbl">Zona</span>
 	            </span>
 	            <ul>
-	                <a href="datatables-net.html"><span class="lbl">Reporte Pagados</span></a></li>
-	                <a href="bootstrap-datatables.html"><span class="lbl">Reporte Deudas</span></a></li>
-					<a href="bootstrap-datatables.html"><span class="lbl">Reporte Gastos</span></a></li>
-					<a href="bootstrap-datatables.html"><span class="lbl">Reporte Clientes</span></a></li>
-					<a href="bootstrap-datatables.html"><span class="lbl">Reporte Corte</span></a></li>
-					<a href="bootstrap-datatables.html"><span class="lbl">Reporte Reconexion</span></a></li>
+	                <a href="datatables-net.html"><span class="lbl">Crear zona</span></a></li>
 					<!--<li><a href="datatables.html"><span class="lbl">Default</span></a></li>
 	                <li><a href="datatables-fixed-columns.html"><span class="lbl">Fixed Columns</span></a></li>
 	                <li><a href="datatables-reorder-rows.html"><span class="lbl">Reorder Rows</span></a></li>
