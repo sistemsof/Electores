@@ -341,7 +341,8 @@
 	                <span class="lbl">Datos personales</span>
 	            </span>
 	            <ul>
-	                <li><a href="messenger.html"><span class="lbl">Crear Cliente</span></a></li>
+	                <li><a href="datos_personales.php"><span class="lbl">Crear Datos personal</span></a></li>
+
 	                <!-- <li><a href="chat-write.html"><span class="lbl">Write Message</span></a></li>
 	                <li><a href="chat-index.html"><span class="lbl">Select User</span></a></li> -->
 	            </ul>
